@@ -1,5 +1,3 @@
-console.log('Welcome');
-
 const txtAuthor = document.getElementById('txtAuthor');
 const txtAuthors = document.getElementById('txtAuthors');
 const btnSearch = document.getElementById('btnSearch');
@@ -15,6 +13,7 @@ function showRes(results, res, type) {
 	<span>Fecha de Nacimiento: ${element.fechaDeNacimiento}<span></br>
 	</br>
 	`;
+			console.log('ID del Autor:', element.id);
 		});
 	} else {
 		res.forEach(element => {
@@ -24,6 +23,8 @@ function showRes(results, res, type) {
 	<span>Año de publicación: ${element.anioPublicacion}<span></br>
 	</br>
 	`;
+			console.log('ID del Autor:', element.autor_id);
+			console.log('ID del Libro:', element.id);
 		});
 	}
 }
@@ -31,10 +32,7 @@ function showRes(results, res, type) {
 btnSearchAuthors.addEventListener('click', () => {
 	const results = document.getElementById('authorsList');
 	fetch(`http://localhost:3000/autores/`)
-		.then(res => {
-			console.log(res.status);
-			return res.json();
-		})
+		.then(res => res.json())
 		.then(res => showRes(results, res, 'author'));
 });
 

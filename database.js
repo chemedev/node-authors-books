@@ -5,7 +5,7 @@ const Sequelize = require('sequelize');
 
 const user = 'root';
 const password = 'admin';
-const sequelize = new Sequelize(`mysql://${user}:${password}@localhost:3306/autores_db`);
+const sequelize = new Sequelize(`mysql://${user}:${password}@localhost:3306/autores_db`, { logging: false });
 
 sequelize
 	.authenticate()
@@ -30,5 +30,13 @@ sequelize
 // 	console.log('DB is Connected');
 // 	return;
 // });
+
+(async () => {
+	let count = 0;
+	[count] = await sequelize.query(`SELECT COUNT(*) FROM autores`);
+	console.log('Autores:', count);
+	[count] = await sequelize.query(`SELECT COUNT(*) FROM libros`);
+	console.log('Libros', count);
+})();
 
 module.exports = sequelize;

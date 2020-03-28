@@ -10,6 +10,10 @@ h1 {
   padding-top: 1em;
 }
 
+h1 span {
+  text-decoration: overline;
+}
+
 body {
   height: 100vh;
 }
