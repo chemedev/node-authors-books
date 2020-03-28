@@ -22,7 +22,7 @@ router.get('/autores/:id', helpers.existeAutorID, async (req, res) => {
 	const query = `SELECT * FROM autores WHERE id = ${id}`;
 
 	const [resultados] = await sequelize.query(query);
-	res.status(200).send(resultados[0]);
+	res.status(200).send(resultados);
 });
 
 router.delete('/autores/:id', helpers.existeAutorID, async (req, res) => {
