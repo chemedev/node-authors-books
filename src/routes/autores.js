@@ -6,25 +6,26 @@ const sequelize = require('../../database');
 //! ROUTES /AUTORES
 router.get('/autores', async (req, res) => {
 	const query = 'SELECT * FROM autores WHERE borrado = 0';
-	const [resultados] = await sequelize.query(query);
-	res.status(200).send(resultados);
+	const resultados = await sequelize.query(query);
+	res.status(200).send(resultados[0]);
 });
 
 router.post('/autores', helpers.existeAutor, async (req, res) => {
+	let resultados;
 	let autor = req.body;
 	let query = `INSERT INTO autores (nombre, apellido, fechaDeNacimiento) VALUES("${autor.nombre}", "${autor.apellido}", "${autor.fechaDeNacimiento}");`;
-	let [resultados] = await sequelize.query(query);
-	query = `SELECT * FROM autores WHERE id = ${resultados}`
 	[resultados] = await sequelize.query(query);
-	res.status(201).send(resultados);
+	query = `SELECT * FROM autores WHERE id = ${resultados}`
+	resultados = await sequelize.query(query);
+	res.status(201).json(resultados[0]);
 });
 
 router.get('/autores/:id', helpers.existeAutorID, async (req, res) => {
 	let { id } = req.params;
 	const query = `SELECT * FROM autores WHERE id = ${id} AND borrado = 0`;
 
-	const [resultados] = await sequelize.query(query);
-	res.status(200).send(resultados);
+	const resultados = await sequelize.query(query);
+	res.status(200).send(resultados[0]);
 });
 
 router.delete('/autores/:id', helpers.existeAutorID, async (req, res) => {
@@ -41,9 +42,9 @@ router.put('/autores/:id', helpers.existeAutorID, async (req, res) => {
 	await sequelize.query(query);
 
 	query = `SELECT * FROM autores WHERE id = ${id} AND borrado = 0`;
-	const [resultado] = await sequelize.query(query);
+	const resultado = await sequelize.query(query);
 
-	res.status(200).send(resultado);
+	res.status(200).send(resultado[0]);
 });
 
 module.exports = router;

@@ -27,6 +27,7 @@ btnsNav.forEach(btn =>
 );
 
 function showRes(results, res, type) {
+	console.log(res);
 	results.innerHTML = '';
 	console.clear();
 	if (type == 'author') {
