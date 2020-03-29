@@ -8,24 +8,68 @@
 		<script defer src="/js/index.js"></script>
 	</head>
 	<body>
-		<h1><u>AUTHORS</u> <i>&</i> <span>BOOKS</span></h1>
-		<div class="container">
+		<h1><span class="span">AUTHORS</span> <span class="amp">&</span> <span class="span">BOOKS</span></h1>
+		<div class="container nav">
+			<a id="btnGet" class="btn nav active">GET</a>
+			<a id="btnUpdate" class="btn nav">UPDATE</a>
+			<a id="btnDelete" class="btn nav">DELETE</a>
+			<a id="btnNew" class="btn nav">NEW</a>
+		</div>
+		<div class="container main">
+			<div class="col">
+				<label for="txtAuthor">Buscar Autor:</label>
+				<input class="inputID" type="text" name="txtAuthor" id="txtAuthor" />
+				<a id="btnSearchAuthor" class="btn">Search</a>
+				<div id="authorList"></div>
+			</div>
+			<div class="col">
+				<label for="txtBookAuthorID">Libro Autor:</label>
+				<input class="inputID" type="text" name="txtBookAuthorID" id="txtBookAuthorID" />
+				<input class="inputID" type="text" name="txtBookID" id="txtBookID" />
+				<a id="btnSearchBook" class="btn">Search</a>
+				<div id="bookList"></div>
+			</div>
 			<div class="col">
 				<label>Buscar Autores:</label>
 				<a id="btnSearchAuthors" class="btn">Search</a>
 				<div id="authorsList"></div>
 			</div>
 			<div class="col">
-				<label for="txtAuthor">Buscar Autor:</label>
-				<input type="text" name="txtAuthor" id="txtAuthor" />
-				<a id="btnSearchAuthor" class="btn">Search</a>
-				<div id="authorList"></div>
-			</div>
-			<div class="col">
-				<label for="txtAuthorBook">Buscar Libro:</label>
-				<input type="text" name="txtAuthorBook" id="txtAuthorBook" />
+				<label for="txtAuthorBook">Libros AutorID:</label>
+				<input class="inputID" type="text" name="txtAuthorBook" id="txtAuthorBook" />
 				<a id="btnSearchBooks" class="btn">Search</a>
 				<div id="booksList"></div>
+			</div>
+		</div>
+		<div class="container main hidden">
+			<div class="col">
+				<label for="txtBookAuthorID">Actualizar Autor:</label>
+				<input class="inputID" type="text" name="txtBookAuthorID" id="txtUpdateAuthorID" />
+				<a id="btnUpdateAuthor" class="btn">Update</a>
+				<div class="formContainer">
+					<label class="form" for="authorName">Nombre:</label>
+					<input class="inputData" type="text" name="authorName" id="txtAuthorName" />
+					<label class="form" for="authorSurname">Apellido:</label>
+					<input class="inputData" type="text" name="authorSurname" id="txtAuthorSurname" />
+					<label class="form" for="authorDate">Nacimiento:</label>
+					<input class="inputData" type="text" name="authorDate" id="txtAuthorDate" />
+				</div>
+				<div id="authorUpdatedList"></div>
+			</div>
+			<div class="col">
+				<label for="txtBookAuthorID">Actualizar Libro:</label>
+				<input class="inputID" type="text" name="txtBookAuthorID" id="txtUpdateBookAuthorID" />
+				<input class="inputID" type="text" name="txtBookUpdateID" id="txtUpdateBookID" />
+				<a id="btnUpdateBook" class="btn">Update</a>
+				<div class="formContainer">
+					<label class="form" for="bookName">Título:</label>
+					<input class="inputData" type="text" name="bookTitle" id="txtBookTitle" />
+					<label class="form" for="bookDesc">Descripción:</label>
+					<input class="inputData" type="text" name="bookDescription" id="txtBookDescription" />
+					<label class="form" for="bookYear">Año:</label>
+					<input class="inputData" type="text" name="bookyear" id="txtBookYear" />
+				</div>
+				<div id="bookUpdatedList"></div>
 			</div>
 		</div>
 	</body>

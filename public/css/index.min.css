@@ -4,14 +4,22 @@
   box-sizing: border-box;
 }
 
-h1 {
-  text-align: center;
-  margin: 0 3em 3em 3em;
-  padding-top: 1em;
+.hidden {
+  display: none !important;
 }
 
-h1 span {
-  text-decoration: overline;
+h1 {
+  text-align: center;
+  margin: 0 3em 1em 3em;
+  padding-top: 2em;
+}
+
+h1 span:first-child {
+  animation: top 2s infinite ease-in-out;
+}
+
+h1 span:last-child {
+  animation: under 2s infinite ease-in-out;
 }
 
 body {
@@ -24,13 +32,22 @@ label {
   line-height: 34px;
 }
 
+label.form {
+  display: inline-block;
+  width: 110px;
+}
+
 input {
   border-style: none;
   border-bottom: 1px solid maroon;
 }
 
-input#txtAuthor, input#txtAuthorBook {
+input.inputID {
   width: 15px;
+}
+
+input.inputData {
+  width: 200px;
 }
 
 .container {
@@ -41,9 +58,14 @@ input#txtAuthor, input#txtAuthorBook {
   flex-wrap: wrap;
 }
 
+.container.nav {
+  padding: 1em;
+  justify-content: center;
+}
+
 .col {
   margin: 0 0.5em 1em;
-  padding: 0 0.5em;
+  padding: 0.5em;
   border: 1px solid black;
   width: 45%;
   height: 50%;
@@ -63,7 +85,36 @@ input#txtAuthor, input#txtAuthorBook {
   border-radius: 4px;
 }
 
+.btn.nav {
+  width: 150px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.btn.nav.active {
+  background-color: black;
+  color: white;
+}
+
 .btn:hover {
   color: white;
-  background-color: black;
+  background-color: #333333;
+}
+
+@keyframes top {
+  0% {
+    text-decoration: overline;
+  }
+  100% {
+    text-decoration: underline;
+  }
+}
+
+@keyframes under {
+  0% {
+    text-decoration: underline;
+  }
+  100% {
+    text-decoration: overline;
+  }
 }

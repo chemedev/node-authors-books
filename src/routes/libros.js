@@ -25,7 +25,7 @@ router.get('/autores/:id/libros/:idLibro', helpers.existeAutorID, helpers.existe
 	let { id, idLibro } = req.params;
 	const query = `SELECT * FROM libros WHERE autor_id = ${id} AND id = ${idLibro}`;
 	let [resultados] = await sequelize.query(query);
-	res.send(resultados[0]);
+	res.send(resultados);
 });
 
 router.put('/autores/:id/libros/:idLibro', helpers.existeAutorID, helpers.existeLibroID, async (req, res) => {
@@ -34,8 +34,8 @@ router.put('/autores/:id/libros/:idLibro', helpers.existeAutorID, helpers.existe
 	let query = `UPDATE libros SET titulo = "${titulo}", descripcion = "${descripcion}", anioPublicacion = ${anioPublicacion} WHERE autor_id = "${id}" AND id = "${idLibro}"`;
 	let resultados = await sequelize.query(query);
 	query = `SELECT * FROM libros WHERE id = ${idLibro}`;
-	resultados = await sequelize.query(query);
-	res.send(resultados[0][0]);
+	[resultados] = await sequelize.query(query);
+	res.send(resultados);
 });
 
 router.delete('/autores/:id/libros/:idLibro', helpers.existeAutorID, helpers.existeLibroID, async (req, res) => {
