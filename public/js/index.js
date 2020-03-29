@@ -26,31 +26,9 @@ btnsNav.forEach(btn =>
 	})
 );
 
-//! GET
-const txtAuthor = document.getElementById('txtAuthor');
-const txtAuthors = document.getElementById('txtAuthors');
-const txtBookAuthorID = document.getElementById('txtBookAuthorID');
-const txtBookID = document.getElementById('txtBookID');
-const btnSearch = document.getElementById('btnSearch');
-const btnSearchBooks = document.getElementById('btnSearchBooks');
-const btnSearchBook = document.getElementById('btnSearchBook');
-
-//! UPDATE
-const txtUpdateAuthorID = document.getElementById('txtUpdateAuthorID');
-const txtAuthorName = document.getElementById('txtAuthorName');
-const txtAuthorSurname = document.getElementById('txtAuthorSurname');
-const txtAuthorDate = document.getElementById('txtAuthorDate');
-const btnUpdateAuthor = document.getElementById('btnUpdateAuthor');
-
-const txtUpdateBookAuthorID = document.getElementById('txtUpdateBookAuthorID');
-const txtUpdateBookID = document.getElementById('txtUpdateBookID');
-const txtBookTitle = document.getElementById('txtBookTitle');
-const txtBookDescription = document.getElementById('txtBookDescription');
-const txtBookYear = document.getElementById('txtBookYear');
-const btnUpdateBook = document.getElementById('btnUpdateBook');
-
 function showRes(results, res, type) {
 	results.innerHTML = '';
+	console.clear();
 	if (type == 'author') {
 		res.forEach(element => {
 			results.innerHTML += `
@@ -74,6 +52,15 @@ function showRes(results, res, type) {
 		});
 	}
 }
+
+//! GET
+const txtAuthor = document.getElementById('txtAuthor');
+const txtAuthors = document.getElementById('txtAuthors');
+const txtBookAuthorID = document.getElementById('txtBookAuthorID');
+const txtBookID = document.getElementById('txtBookID');
+const btnSearch = document.getElementById('btnSearch');
+const btnSearchBooks = document.getElementById('btnSearchBooks');
+const btnSearchBook = document.getElementById('btnSearchBook');
 
 btnSearchAuthors.addEventListener('click', () => {
 	const results = document.getElementById('authorsList');
@@ -107,6 +94,20 @@ btnSearchBook.addEventListener('click', () => {
 		.then(res => showRes(results, res, 'book'));
 });
 
+//! UPDATE
+const txtUpdateAuthorID = document.getElementById('txtUpdateAuthorID');
+const txtAuthorName = document.getElementById('txtAuthorName');
+const txtAuthorSurname = document.getElementById('txtAuthorSurname');
+const txtAuthorDate = document.getElementById('txtAuthorDate');
+const btnUpdateAuthor = document.getElementById('btnUpdateAuthor');
+
+const txtUpdateBookAuthorID = document.getElementById('txtUpdateBookAuthorID');
+const txtUpdateBookID = document.getElementById('txtUpdateBookID');
+const txtBookTitle = document.getElementById('txtBookTitle');
+const txtBookDescription = document.getElementById('txtBookDescription');
+const txtBookYear = document.getElementById('txtBookYear');
+const btnUpdateBook = document.getElementById('btnUpdateBook');
+
 btnUpdateAuthor.addEventListener('click', async () => {
 	const results = document.getElementById('authorUpdatedList');
 	const ID = txtUpdateAuthorID.value;
@@ -135,6 +136,81 @@ btnUpdateBook.addEventListener('click', async () => {
 	newBook.anioPublicacion = txtBookYear.value;
 	await fetch(`http://localhost:3000/autores/${AuthorID}/libros/${ID}`, {
 		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(newBook)
+	})
+		.then(res => res.json())
+		.then(res => showRes(results, res, 'book'));
+});
+
+//! DELETE
+const txtDeleteAuthor = document.getElementById('txtDeleteAuthor');
+const txtDeleteBookAuthorID = document.getElementById('txtDeleteBookAuthorID');
+const txtDeleteBookID = document.getElementById('txtDeleteBookID');
+const btnDeleteAuthor = document.getElementById('btnDeleteAuthor');
+const btnDeleteBook = document.getElementById('btnDeleteBook');
+
+btnDeleteAuthor.addEventListener('click', async () => {
+	const results = document.getElementById('authorDeleted');
+	const ID = txtDeleteAuthor.value;
+	await fetch(`http://localhost:3000/autores/${ID}`, {
+		method: 'DELETE'
+	}).then(res => {
+		if (res.ok) results.innerHTML = 'Author deleted.';
+	});
+});
+
+btnDeleteBook.addEventListener('click', async () => {
+	const results = document.getElementById('bookDeleted');
+	const ID = txtDeleteBookAuthorID.value;
+	const BookID = txtDeleteBookID.value;
+	await fetch(`http://localhost:3000/autores/${ID}/libros/${BookID}`, {
+		method: 'DELETE'
+	}).then(res => {
+		if (res.ok) results.innerHTML = 'Book deleted.';
+	});
+});
+
+//! NEW
+const newAuthorName = document.getElementById('newAuthorName');
+const newAuthorSurname = document.getElementById('newAuthorSurname');
+const newAuthorDate = document.getElementById('newAuthorDate');
+const btnNewAuthor = document.getElementById('btnNewAuthor');
+
+const newBookAuthorID = document.getElementById('newBookAuthorID');
+const newBookTitle = document.getElementById('newBookTitle');
+const newBookDescription = document.getElementById('newBookDescription');
+const newBookYear = document.getElementById('newBookYear');
+const btnNewBook = document.getElementById('btnNewBook');
+
+btnNewAuthor.addEventListener('click', async () => {
+	const results = document.getElementById('newAuthor');
+	const newAuthor = {};
+	newAuthor.nombre = newAuthorName.value;
+	newAuthor.apellido = newAuthorSurname.value;
+	newAuthor.fechaDeNacimiento = newAuthorDate.value;
+	await fetch(`http://localhost:3000/autores`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(newAuthor)
+	})
+		.then(res => res.json())
+		.then(res => showRes(results, res, 'author'));
+});
+
+btnNewBook.addEventListener('click', async () => {
+	const results = document.getElementById('newBook');
+	const AuthorID = newBookAuthorID.value;
+	const newBook = {};
+	newBook.titulo = newBookTitle.value;
+	newBook.descripcion = newBookDescription.value;
+	newBook.anioPublicacion = newBookYear.value;
+	await fetch(`http://localhost:3000/autores/${AuthorID}/libros`, {
+		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
 		},

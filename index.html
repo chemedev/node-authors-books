@@ -17,25 +17,25 @@
 		</div>
 		<div class="container main">
 			<div class="col">
-				<label for="txtAuthor">Buscar Autor:</label>
+				<label for="txtAuthor">Author:</label>
 				<input class="inputID" type="text" name="txtAuthor" id="txtAuthor" />
 				<a id="btnSearchAuthor" class="btn">Search</a>
 				<div id="authorList"></div>
 			</div>
 			<div class="col">
-				<label for="txtBookAuthorID">Libro Autor:</label>
+				<label for="txtBookAuthorID">Book:</label>
 				<input class="inputID" type="text" name="txtBookAuthorID" id="txtBookAuthorID" />
 				<input class="inputID" type="text" name="txtBookID" id="txtBookID" />
 				<a id="btnSearchBook" class="btn">Search</a>
 				<div id="bookList"></div>
 			</div>
 			<div class="col">
-				<label>Buscar Autores:</label>
+				<label>All Authors:</label>
 				<a id="btnSearchAuthors" class="btn">Search</a>
 				<div id="authorsList"></div>
 			</div>
 			<div class="col">
-				<label for="txtAuthorBook">Libros AutorID:</label>
+				<label for="txtAuthorBook">Author/Books:</label>
 				<input class="inputID" type="text" name="txtAuthorBook" id="txtAuthorBook" />
 				<a id="btnSearchBooks" class="btn">Search</a>
 				<div id="booksList"></div>
@@ -43,33 +43,77 @@
 		</div>
 		<div class="container main hidden">
 			<div class="col">
-				<label for="txtBookAuthorID">Actualizar Autor:</label>
+				<label for="txtBookAuthorID">Update Author:</label>
 				<input class="inputID" type="text" name="txtBookAuthorID" id="txtUpdateAuthorID" />
 				<a id="btnUpdateAuthor" class="btn">Update</a>
 				<div class="formContainer">
-					<label class="form" for="authorName">Nombre:</label>
+					<label class="form" for="authorName">Name:</label>
 					<input class="inputData" type="text" name="authorName" id="txtAuthorName" />
-					<label class="form" for="authorSurname">Apellido:</label>
+					<label class="form" for="authorSurname">Surname:</label>
 					<input class="inputData" type="text" name="authorSurname" id="txtAuthorSurname" />
-					<label class="form" for="authorDate">Nacimiento:</label>
+					<label class="form" for="authorDate">Birthdate:</label>
 					<input class="inputData" type="text" name="authorDate" id="txtAuthorDate" />
 				</div>
 				<div id="authorUpdatedList"></div>
 			</div>
 			<div class="col">
-				<label for="txtBookAuthorID">Actualizar Libro:</label>
+				<label for="txtBookAuthorID">Update Book:</label>
 				<input class="inputID" type="text" name="txtBookAuthorID" id="txtUpdateBookAuthorID" />
 				<input class="inputID" type="text" name="txtBookUpdateID" id="txtUpdateBookID" />
 				<a id="btnUpdateBook" class="btn">Update</a>
 				<div class="formContainer">
-					<label class="form" for="bookName">Título:</label>
+					<label class="form" for="bookName">Title:</label>
 					<input class="inputData" type="text" name="bookTitle" id="txtBookTitle" />
-					<label class="form" for="bookDesc">Descripción:</label>
+					<label class="form" for="bookDesc">Desc:</label>
 					<input class="inputData" type="text" name="bookDescription" id="txtBookDescription" />
-					<label class="form" for="bookYear">Año:</label>
+					<label class="form" for="bookYear">Year:</label>
 					<input class="inputData" type="text" name="bookyear" id="txtBookYear" />
 				</div>
 				<div id="bookUpdatedList"></div>
+			</div>
+		</div>
+		<div class="container main hidden">
+			<div class="col">
+				<label for="txtDeleteAuthor">Author:</label>
+				<input class="inputID" type="text" name="txtDeleteAuthor" id="txtDeleteAuthor" />
+				<a id="btnDeleteAuthor" class="btn">Delete</a>
+				<div id="authorDeleted"></div>
+			</div>
+			<div class="col">
+				<label for="txtDeleteBookAuthorID">Book:</label>
+				<input class="inputID" type="text" name="txtDeleteBookAuthorID" id="txtDeleteBookAuthorID" />
+				<input class="inputID" type="text" name="txtDeleteBookID" id="txtDeleteBookID" />
+				<a id="btnDeleteBook" class="btn">Delete</a>
+				<div id="bookDeleted"></div>
+			</div>
+		</div>
+		<div class="container main hidden">
+			<div class="col">
+				<label for="txtBookAuthorID">New Author:</label>
+				<a id="btnNewAuthor" class="btn">Create</a>
+				<div class="formContainer">
+					<label class="form" for="newAuthorName">Name:</label>
+					<input class="inputData" type="text" name="newAuthorName" id="newAuthorName" />
+					<label class="form" for="newAuthorSurname">Surname:</label>
+					<input class="inputData" type="text" name="newAuthorSurname" id="newAuthorSurname" />
+					<label class="form" for="newAuthorDate">Birthdate:</label>
+					<input class="inputData" type="text" name="newAuthorDate" id="newAuthorDate" />
+				</div>
+				<div id="newAuthor"></div>
+			</div>
+			<div class="col">
+				<label for="newBookAuthorID">New Book:</label>
+				<input class="inputID" type="text" name="newBookAuthorID" id="newBookAuthorID" />
+				<a id="btnNewBook" class="btn">Create</a>
+				<div class="formContainer">
+					<label class="form" for="newBookTitle">Title:</label>
+					<input class="inputData" type="text" name="newBookTitle" id="newBookTitle" />
+					<label class="form" for="newBookDescription">Desc:</label>
+					<input class="inputData" type="text" name="newBookDescription" id="newBookDescription" />
+					<label class="form" for="newBookYear">Year:</label>
+					<input class="inputData" type="text" name="newBookYear" id="newBookYear" />
+				</div>
+				<div id="newBook"></div>
 			</div>
 		</div>
 	</body>

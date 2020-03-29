@@ -10,10 +10,14 @@ sequelize
 
 (async () => {
 	let count = 0;
-	[count] = await sequelize.query(`SELECT COUNT(*) FROM autores`);
-	console.log('Autores:', count);
-	[count] = await sequelize.query(`SELECT COUNT(*) FROM libros`);
-	console.log('Libros', count);
+	try {
+		[count] = await sequelize.query(`SELECT COUNT(*) FROM autores`);
+		console.log('Autores:', count);
+		[count] = await sequelize.query(`SELECT COUNT(*) FROM libros`);
+		console.log('Libros', count);
+	} catch (err) {
+		console.log('Hubo un error:', err.parent.code);
+	}
 })();
 
 module.exports = sequelize;

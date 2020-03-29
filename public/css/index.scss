@@ -65,6 +65,8 @@ input {
 	border: 1px solid black;
 	width: 45%;
 	height: 50%;
+	max-height: 300px;
+	overflow: auto;
 }
 
 .btn {
